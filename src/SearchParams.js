@@ -6,8 +6,8 @@ import useDropdown from "./useDropdown";
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breeds, setBreeds] = useState([]);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+  const [breeds, setBreeds] = useState([]);
   const [pets, setPets] = useState([]);
   /* 
     NOTE: hooks NEVER go inside if statements or for loops;
