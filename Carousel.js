@@ -9,7 +9,6 @@ class Carousel extends React.Component {
   // MUST be static; take in a set of PROPS and
   // give back a new set of STATE
   static getDerivedStateFromProps({ media }) {
-    console.log("media: ", media);
     let photos = ["http://placecorgi.com/600/600"];
 
     // ONLY GRAB LARGE PHOTOS
@@ -28,7 +27,7 @@ class Carousel extends React.Component {
 
   render() {
     const { active, photos } = this.state;
-    console.log(this.state);
+
     return (
       <div className="carousel">
         <img src={photos[active]} alt="animal" />
