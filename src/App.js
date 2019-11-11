@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import "babel-polyfill";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
+import Navbar from "./Navbar";
 import ThemeContext from "./ThemeContext";
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
       <ThemeContext.Provider value={themeHook}>
         <div>
           <header>
-            <Link to="/">Adopt Me!</Link>
+            <Navbar />
           </header>
           <Router>
             <SearchParams path="/" />
