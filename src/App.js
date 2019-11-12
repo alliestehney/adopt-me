@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { render } from "react-dom";
 import { Router } from "@reach/router";
 import "babel-polyfill";
-import SearchParams from "./SearchParams";
-import Details from "./Details";
 import Navbar from "./Navbar";
 import ThemeContext from "./ThemeContext";
+
+// will not load until details is rendered for the first time
+const Details = lazy(() => import("./Details"));
+const SearchParams = lazy(() => import("./SearchParams"));
+
+// fallback in suspense is used to show something if the details
+// component isn't ready yet
+
+// for codesplitting --> at least 30kb+
 
 const App = () => {
   const themeHook = useState("darkblue"); // grab whole array
@@ -16,10 +23,12 @@ const App = () => {
           <header>
             <Navbar />
           </header>
-          <Router>
-            <SearchParams path="/" />
-            <Details path="/details/:id" />
-          </Router>
+          <Suspense fallback={<h1>Loading Route...</h1>}>
+            <Router>
+              <SearchParams path="/" />
+              <Details path="/details/:id" />
+            </Router>
+          </Suspense>
         </div>
       </ThemeContext.Provider>
     </React.StrictMode>
